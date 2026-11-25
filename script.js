@@ -9,6 +9,8 @@
 
   const goalCheckboxes = Array.from(document.querySelectorAll(".goal-checkbox"));
   const goalsProgress = document.getElementById("goals-progress");
+  const interestCards = Array.from(document.querySelectorAll(".cards-grid .card"));
+  const typingGreeting = document.getElementById("typing-greeting");
 
   function safeGetStorage(key) {
     try {
@@ -39,7 +41,7 @@
     }
 
     if (themeIcon) {
-      themeIcon.textContent = isDark ? "☀️" : "🌙";
+      themeIcon.textContent = isDark ? "💡" : "🕶️";
     }
 
     if (themeLabel) {
@@ -104,6 +106,58 @@
     });
   }
 
+  function initInterestCards() {
+    interestCards.forEach((card) => {
+      const trigger = card.querySelector(".card-trigger");
+      const panel = card.querySelector(".card-panel");
+      const hint = card.querySelector(".card-hint");
+
+      if (!trigger || !panel) return;
+
+      trigger.addEventListener("click", () => {
+        const isOpen = card.classList.toggle("is-open");
+        trigger.setAttribute("aria-expanded", String(isOpen));
+        panel.setAttribute("aria-hidden", String(!isOpen));
+
+        if (hint) {
+          hint.textContent = isOpen ? "설명 접기" : "설명 펼치기";
+        }
+      });
+    });
+  }
+
+  function initTypingGreeting() {
+    if (!typingGreeting) return;
+
+    const fullText =
+      typingGreeting.dataset.greeting || typingGreeting.textContent.trim();
+    if (!fullText) return;
+
+    const prefersReducedMotion = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion) {
+      typingGreeting.textContent = fullText;
+      return;
+    }
+
+    const chars = Array.from(fullText);
+    let index = 0;
+    typingGreeting.textContent = "";
+
+    function typeNextChar() {
+      if (index >= chars.length) return;
+      typingGreeting.textContent += chars[index];
+      index += 1;
+      window.setTimeout(typeNextChar, 55);
+    }
+
+    window.setTimeout(typeNextChar, 180);
+  }
+
   initTheme();
+  initTypingGreeting();
+  initInterestCards();
   initGoals();
 })();

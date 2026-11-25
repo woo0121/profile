@@ -3,13 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>김도현 | 컴퓨터공학과 신입생 자기소개</title>
+  <title>홍길동 | 영진전문대학교 컴퓨터정보계열 1학년</title>
+  <script>
+    try {
+      if (localStorage.getItem("profile-theme") === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    } catch (e) {}
+  </script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="page-wrapper">
-    <!-- 오른쪽 위 다크모드 전환 버튼 영역 -->
+    <!-- 상단 인사말 & 오른쪽 위 다크모드 전환 버튼 영역 -->
     <header class="top-bar">
+      <div class="greeting-box" aria-label="안녕하세요! 홍길동의 공간에 오신 것을 환영합니다.">
+        <span class="greeting-prompt" aria-hidden="true">&gt;_</span>
+        <span
+          id="typing-greeting"
+          class="typing-greeting"
+          data-greeting="안녕하세요! 홍길동의 공간에 오신 것을 환영합니다. 👋"
+        >안녕하세요! 홍길동의 공간에 오신 것을 환영합니다. 👋</span>
+        <span class="typing-cursor" aria-hidden="true"></span>
+      </div>
       <button
         id="theme-toggle"
         class="theme-toggle"
@@ -17,7 +33,7 @@
         aria-label="다크 모드로 전환"
         aria-pressed="false"
       >
-        <span class="theme-icon" aria-hidden="true">🌙</span>
+        <span class="theme-icon" aria-hidden="true">🕶️</span>
         <span class="theme-label">다크 모드</span>
       </button>
     </header>
@@ -29,10 +45,10 @@
           🧑‍💻
         </div>
         <div class="hero-text">
-          <span class="badge">컴퓨터공학과 신입생</span>
-          <h1 class="name">김도현</h1>
+          <span class="badge">영진전문대학교 컴퓨터정보계열 1학년</span>
+          <h1 class="name">홍길동</h1>
           <p class="tagline">
-            호기심을 코드로 풀어내며 매일 한 걸음씩 성장하는 컴퓨터공학과 새내기입니다.
+            영진전문대학교 컴퓨터정보계열 1학년 홍길동입니다. 세상을 더 편리하게 만드는 코드를 꿈꾸며, 매일 새로운 기술을 탐구하는 개발 꿈나무입니다.
           </p>
         </div>
       </section>
@@ -41,32 +57,89 @@
       <section class="section" aria-labelledby="interests-heading">
         <div class="section-header">
           <h2 id="interests-heading" class="section-title">관심 분야</h2>
-          <p class="section-subtitle">앞으로 깊이 탐구하고 싶은 세 가지 영역입니다.</p>
+          <p class="section-subtitle">카드를 클릭하면 자세한 설명을 펼쳐볼 수 있습니다.</p>
         </div>
 
         <div class="cards-grid">
           <article class="card">
-            <div class="card-icon" aria-hidden="true">🌐</div>
-            <h3 class="card-title">웹 개발</h3>
-            <p class="card-desc">
-              누구나 브라우저로 쉽게 만날 수 있는 인터랙티브한 화면을 만들고, HTML·CSS·JavaScript의 기본기를 탄탄히 다지고 있습니다.
-            </p>
+            <button
+              type="button"
+              class="card-trigger"
+              aria-expanded="false"
+              aria-controls="interest-desc-web"
+            >
+              <div class="card-top">
+                <div class="card-icon" aria-hidden="true">🌐</div>
+                <span class="card-chevron" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </span>
+              </div>
+              <h3 class="card-title">웹 개발</h3>
+              <span class="card-hint">설명 펼치기</span>
+            </button>
+            <div class="card-panel" id="interest-desc-web" aria-hidden="true">
+              <div class="card-panel-inner">
+                <p class="card-desc">
+                  누구나 브라우저로 쉽게 만날 수 있는 인터랙티브한 화면을 만들고, HTML·CSS·JavaScript의 기본기를 탄탄히 다지고 있습니다.
+                </p>
+              </div>
+            </div>
           </article>
 
           <article class="card">
-            <div class="card-icon" aria-hidden="true">🤖</div>
-            <h3 class="card-title">인공지능</h3>
-            <p class="card-desc">
-              데이터 속에서 패턴을 찾아내는 머신러닝과 딥러닝의 원리에 호기심을 갖고, 일상을 돕는 AI 응용 서비스를 꿈꾸고 있습니다.
-            </p>
+            <button
+              type="button"
+              class="card-trigger"
+              aria-expanded="false"
+              aria-controls="interest-desc-ai"
+            >
+              <div class="card-top">
+                <div class="card-icon" aria-hidden="true">🤖</div>
+                <span class="card-chevron" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </span>
+              </div>
+              <h3 class="card-title">인공지능</h3>
+              <span class="card-hint">설명 펼치기</span>
+            </button>
+            <div class="card-panel" id="interest-desc-ai" aria-hidden="true">
+              <div class="card-panel-inner">
+                <p class="card-desc">
+                  데이터 속에서 패턴을 찾아내는 머신러닝과 딥러닝의 원리에 호기심을 갖고, 일상을 돕는 AI 응용 서비스를 꿈꾸고 있습니다.
+                </p>
+              </div>
+            </div>
           </article>
 
           <article class="card">
-            <div class="card-icon" aria-hidden="true">🎮</div>
-            <h3 class="card-title">게임</h3>
-            <p class="card-desc">
-              플레이어에게 즐거움과 몰입감을 전하는 게임 로직 설계, 실시간 상호작용, 그리고 매력적인 세계관 구현에 관심이 많습니다.
-            </p>
+            <button
+              type="button"
+              class="card-trigger"
+              aria-expanded="false"
+              aria-controls="interest-desc-game"
+            >
+              <div class="card-top">
+                <div class="card-icon" aria-hidden="true">🎮</div>
+                <span class="card-chevron" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </span>
+              </div>
+              <h3 class="card-title">게임</h3>
+              <span class="card-hint">설명 펼치기</span>
+            </button>
+            <div class="card-panel" id="interest-desc-game" aria-hidden="true">
+              <div class="card-panel-inner">
+                <p class="card-desc">
+                  플레이어에게 즐거움과 몰입감을 전하는 게임 로직 설계, 실시간 상호작용, 그리고 매력적인 세계관 구현에 관심이 많습니다.
+                </p>
+              </div>
+            </div>
           </article>
         </div>
       </section>
@@ -126,12 +199,12 @@
     <!-- 하단 연락처 & 링크 -->
     <footer class="footer">
       <div class="footer-links">
-        <a class="footer-link" href="mailto:dohyun.kim@example.com">
+        <a class="footer-link" href="mailto:hong.gildong@example.com">
           <svg class="footer-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="2" y="4" width="20" height="16" rx="2" />
             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
           </svg>
-          <span>dohyun.kim@example.com</span>
+          <span>hong.gildong@example.com</span>
         </a>
 
         <a class="footer-link" href="https://github.com/username" target="_blank" rel="noopener noreferrer">
@@ -141,7 +214,7 @@
           <span>GitHub</span>
         </a>
       </div>
-      <p class="copyright">© 2026 김도현 · Computer Science Freshman</p>
+      <p class="copyright">© 2026 홍길동 · 영진전문대학교 컴퓨터정보계열</p>
     </footer>
   </div>
 
